@@ -2,8 +2,9 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnOpenModal = document.querySelectorAll('.btn--show-modal');
-console.log(btnOpenModal);
 
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
 
 const openModal = function() {
     modal.classList.remove('hidden');
@@ -25,21 +26,32 @@ document.addEventListener('keydown', function(e){
     }
 });
 
-const btnScrollTo = document.querySelector('.btn--scroll-to');
 
-const section1 = document.querySelector('#section--1');
 
 btnScrollTo.addEventListener('click', function(e) {
     const s1coords = section1.getBoundingClientRect();
     console.log(s1coords);
     console.log(s1coords.left, s1coords.top);
     // console.log(e.target.getBoundingClientRect());
-    // console.log(`Current scroll(X/Y)`, window.pageXOffset, pageYOffset);
+    console.log(`Current scroll(X/Y)`, window.pageXOffset, pageYOffset);
     // console.log(`height/width viewport`, document.documentElement.clientHeight,
     // document.documentElement.clientWidth);
 
-    //Scrolling
-    window.scrollTo(s1coords.left, s1coords.top);
+    //Scrolling old way
+    // window.scrollTo(
+    //     s1coords.left + window.pageXOffset,
+    //     s1coords.top + window.pageYOffset
+    // );
+
+    // old way
+    window.scrollTo({
+        left: s1coords.left + window.pageXOffset,
+        top: s1coords.top + window.pageYOffset,
+        behavior: 'smooth',
+    });
+
+    //this is modern way 
+    //ection1.scrollIntoView({behavior: 'smooth'});
 });
 
 
@@ -97,18 +109,18 @@ message.innerHTML =  `We use cookies for improved functionality and analytics.
 
 //                                Styles
 
-message.style.backgroundColor = '#37383d';
-message.style.width = '120%';
+// message.style.backgroundColor = '#37383d';
+// message.style.width = '120%';
 
-console.log(message.style.height); //This NOT work!
+// console.log(message.style.height); //This NOT work!
 
-console.log(getComputedStyle(message).color);
-console.log(getComputedStyle(message).height);
+// console.log(getComputedStyle(message).color);
+// console.log(getComputedStyle(message).height);
 
-const increaseHeight = message.style.height = 
-Number.parseFloat(getComputedStyle(message).height, 10) + 40 + 'px';
+// const increaseHeight = message.style.height = 
+// Number.parseFloat(getComputedStyle(message).height, 10) + 40 + 'px';
 
-console.log(increaseHeight);
+// console.log(increaseHeight);
 
 //                       Changing style.css form JS
 
@@ -119,22 +131,22 @@ console.log(increaseHeight);
 
 const logo = document.querySelector('.bank__logo');
 
-console.log(logo.alt);
-console.log(logo.src);
-console.log(logo.className);
+// console.log(logo.alt);
+// console.log(logo.src);
+// console.log(logo.className);
 
-console.log(logo.getAttribute('designer'));
+// console.log(logo.getAttribute('designer'));
 
-console.log(logo.getAttribute('src'));
+// console.log(logo.getAttribute('src'));
 
-const link = document.querySelector('.nav__links--btn');
-console.log(link.getAttribute('href'));
+// const link = document.querySelector('.nav__links--btn');
+// console.log(link.getAttribute('href'));
 
-//                             Date atributes
+// //                             Date atributes
 
-const headerImg = document.querySelector('.header__img');
+// const headerImg = document.querySelector('.header__img');
 
-console.log(headerImg.dataset.versionNumber);
+// console.log(headerImg.dataset.versionNumber);
 
 
 //                                  Clases
@@ -143,6 +155,15 @@ console.log(headerImg.dataset.versionNumber);
 // logo.classList.remove();
 // logo.classList.toggle();
 // logo.classList.contains();
+
+const h1 = document.querySelector('h1');
+h1.addEventListener('mouseenter', function(e) {
+    alert('You are reading the heading :D');
+})
+
+
+
+
 
 
 
