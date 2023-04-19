@@ -158,8 +158,8 @@ const logo = document.querySelector('.bank__logo');
 
 const h1 = document.querySelector('h1');
 h1.addEventListener('mouseenter', function(e) {
-    alert('You are reading the heading :D');
-})
+    // alert('You are reading the heading :D');
+});
 
 
 
