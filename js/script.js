@@ -156,10 +156,59 @@ const logo = document.querySelector('.bank__logo');
 // logo.classList.toggle();
 // logo.classList.contains();
 
+
+
 const h1 = document.querySelector('h1');
-h1.addEventListener('mouseenter', function(e) {
-    // alert('You are reading the heading :D');
+// h1.addEventListener('mouseenter', function(e){
+//     //alert(`Great!: You are reading the heading`);
+// });
+
+const alertH1 = function() {
+    alert('mouseenter: Great! you are reading the header');
+    //h1.removeEventListener('mouseenter', alertH1);
+}
+
+h1.addEventListener('mouseenter', alertH1);
+
+setTimeout(()=> h1.removeEventListener('mouseenter', alertH1), 3000);
+
+// h1.onmouseenter = function() {
+//     alert(`onmouseenter: Great!: You are reading the heading`)
+// };
+
+
+//                               Bubble and Capturing events
+
+// rgb(255,255,255)
+const randomInt = (min, max)=> Math.floor(Math.random() * (max - min + 1) + min);
+const randomColor = ()=> `rgb(${randomInt(0,255)}, ${randomInt(0, 255)}, ${randomInt(0,255)})`;
+
+console.log(randomColor(0,255));
+document.querySelector('.nav__links').addEventListener('click', function(e) {
+    this.style.backgroundColor  = randomColor();
+    console.log(`LINK`, e.target);
+    console.log(e.currentTarget);
+
+    // Stop propagation
+    e.stopPropagation();
 });
+
+document.querySelector('.navbar__list').addEventListener('click', function(e) {
+    this.style.backgroundColor = randomColor();
+    console.log(`LINK`, e.target);
+});
+
+document.querySelector('.navbar').addEventListener('click',function(e) {
+    this.style.backgroundColor = randomColor();
+    console.log(`LINK`, e.target);
+});
+
+const btnOpen = document.querySelector('.nav__links--btn');
+
+// setInterval(function(){
+//     btnOpen.style.backgroundColor = `rgb(${randomInt(0,255)}, ${randomInt(0, 255)}, ${randomInt(0,255)})`
+// },3000)
+
 
 
 
