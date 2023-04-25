@@ -6,6 +6,8 @@ const btnOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
+
+//                   Modal window             //     
 const openModal = function() {
     modal.classList.remove('hidden');
     overlay.classList.remove('hidden');
@@ -16,9 +18,11 @@ const closeModal =  function () {
     overlay.classList.add('hidden');
 }
 
+
+
 btnOpenModal.forEach(btn=> btn.addEventListener('click', openModal));
 btnCloseModal.addEventListener('click', closeModal);
-overlay.addEventListener('click', btnCloseModal);
+overlay.addEventListener('click', closeModal);
 
 document.addEventListener('keydown', function(e){
     if(e.key === 'Escape' && !modal.classList.contains('hidden')) {
@@ -27,7 +31,7 @@ document.addEventListener('keydown', function(e){
 });
 
 
-
+//                         Scroll 
 btnScrollTo.addEventListener('click', function(e) {
     const s1coords = section1.getBoundingClientRect();
     console.log(s1coords);
@@ -53,6 +57,21 @@ btnScrollTo.addEventListener('click', function(e) {
     //this is modern way 
     //ection1.scrollIntoView({behavior: 'smooth'});
 });
+
+
+//                                Page navigation
+
+const navLinks = document.querySelectorAll('.nav__links');
+navLinks.forEach(function(el){
+    el.addEventListener('click', function(e){
+        e.preventDefault();
+        const id = this.getAttribute('href');
+        document.querySelector(id).scrollIntoView({behavior: 'smooth'});
+        
+    })
+});
+
+
 
 
 //////////////////////////////////
@@ -180,36 +199,40 @@ setTimeout(()=> h1.removeEventListener('mouseenter', alertH1), 3000);
 //                               Bubble and Capturing events
 
 // rgb(255,255,255)
-const randomInt = (min, max)=> Math.floor(Math.random() * (max - min + 1) + min);
-const randomColor = ()=> `rgb(${randomInt(0,255)}, ${randomInt(0, 255)}, ${randomInt(0,255)})`;
+// const randomInt = function (min, max) {
+//     return Math.floor(Math.random() * (max - min + 1) + min);
+// }    
 
-console.log(randomColor(0,255));
-document.querySelector('.nav__links').addEventListener('click', function(e) {
-    this.style.backgroundColor  = randomColor();
-    console.log(`LINK`, e.target);
-    console.log(e.currentTarget);
+// const randomColor = ()=> `rgb(${randomInt(0,255)}, ${randomInt(0, 255)}, ${randomInt(0,255)})`;
 
-    // Stop propagation
-    e.stopPropagation();
-});
+// console.log(randomColor(0,255));
+// document.querySelector('.nav__links').addEventListener('click', function(e) {
+//     this.style.backgroundColor  = randomColor();
+//     console.log(`LINK`, e.target);
+//     console.log(e.currentTarget);
 
-document.querySelector('.navbar__list').addEventListener('click', function(e) {
-    this.style.backgroundColor = randomColor();
-    console.log(`LINK`, e.target);
-});
+//     // Stop propagation
+//     e.stopPropagation();
+// });
 
-document.querySelector('.navbar').addEventListener('click',function(e) {
-    this.style.backgroundColor = randomColor();
-    console.log(`LINK`, e.target);
-});
+// document.querySelector('.navbar__list').addEventListener('click', function(e) {
+//     this.style.backgroundColor = randomColor();
+//     console.log(`LINK`, e.target);
+// });
 
-const btnOpen = document.querySelector('.nav__links--btn');
+// document.querySelector('.navbar').addEventListener('click',function(e) {
+//     this.style.backgroundColor = randomColor();
+//     console.log(`LINK`, e.target);
+// });
 
-// setInterval(function(){
-//     btnOpen.style.backgroundColor = `rgb(${randomInt(0,255)}, ${randomInt(0, 255)}, ${randomInt(0,255)})`
-// },3000)
+// const btnOpen = document.querySelector('.nav__links--btn');
 
+// // setInterval(function(){
+// //     btnOpen.style.backgroundColor = `rgb(${randomInt(0,255)}, ${randomInt(0, 255)}, ${randomInt(0,255)})`
+// // },3000)
 
+// console.log(Math.floor(5.67));
+// console.log(Math.random());
 
 
 
