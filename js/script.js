@@ -22,11 +22,11 @@ overlay.addEventListener('click', btnCloseModal);
 
 document.addEventListener('keydown', function(e){
     if(e.key === 'Escape' && !modal.classList.contains('hidden')) {
-    closeModal();
+        closeModal();
     }
 });
 
-
+// Button scrolling
 
 btnScrollTo.addEventListener('click', function(e) {
     const s1coords = section1.getBoundingClientRect();
@@ -55,6 +55,17 @@ btnScrollTo.addEventListener('click', function(e) {
 });
 
 
+// Page navigation 
+
+const navLinks = document.querySelectorAll('.nav__links');
+navLinks.forEach(item=> item.addEventListener('click', function(e){
+    e.preventDefault();
+    const id = item.href;
+    console.log(id);    
+}))
+
+
+
 //////////////////////////////////
 /////////////////////////////////
 
@@ -73,13 +84,13 @@ btnScrollTo.addEventListener('click', function(e) {
 
 //.insertAdjacentHTML;
 
-const header = document.querySelector('.header');
-const message = document.createElement('div');
-message.classList.add('cookie-message');
-// message.textContent = `We use cookies for improved functionality and analytics`;
+// const header = document.querySelector('.header');
+// const message = document.createElement('div');
+// message.classList.add('cookie-message');
+// // message.textContent = `We use cookies for improved functionality and analytics`;
 
-message.innerHTML =  `We use cookies for improved functionality and analytics.
-<button class="btn btn--close-cookie">Got it!</button>`;
+// message.innerHTML =  `We use cookies for improved functionality and analytics.
+// <button class="btn btn--close-cookie">Got it!</button>`;
 
 //header.prepend(message);
 // header.append(message);
@@ -156,13 +167,63 @@ const logo = document.querySelector('.bank__logo');
 // logo.classList.toggle();
 // logo.classList.contains();
 
+
+
 const h1 = document.querySelector('h1');
+
 const alertH1 = function() {
     alert(`Great !`)
 }
 h1.addEventListener('mouseenter', function(e) {
     alert('You are reading the heading :D');
 });
+
+
+// h1.addEventListener('mouseenter', function(e){
+//     //alert(`Great!: You are reading the heading`);
+// });
+
+
+h1.addEventListener('mouseenter', alertH1);
+
+setTimeout(()=> h1.removeEventListener('mouseenter', alertH1), 3000);
+
+// h1.onmouseenter = function() {
+//     alert(`onmouseenter: Great!: You are reading the heading`)
+// };
+
+
+//                               Bubble and Capturing events
+
+// rgb(255,255,255)
+// const randomInt = (min, max)=> Math.floor(Math.random() * (max - min + 1) + min);
+// const randomColor = ()=> `rgb(${randomInt(0,255)}, ${randomInt(0, 255)}, ${randomInt(0,255)})`;
+
+// console.log(randomColor(0,255));
+// document.querySelector('.nav__links').addEventListener('click', function(e) {
+//     this.style.backgroundColor  = randomColor();
+//     console.log(`LINK`, e.target);
+//     console.log(e.currentTarget);
+
+//     // Stop propagation
+//     e.stopPropagation();
+// });
+
+// document.querySelector('.navbar__list').addEventListener('click', function(e) {
+//     this.style.backgroundColor = randomColor();
+//     console.log(`LINK`, e.target);
+// });
+
+// document.querySelector('.navbar').addEventListener('click',function(e) {
+//     this.style.backgroundColor = randomColor();
+//     console.log(`LINK`, e.target);
+// });
+
+// const btnOpen = document.querySelector('.nav__links--btn');
+
+// setInterval(function(){
+//     btnOpen.style.backgroundColor = `rgb(${randomInt(0,255)}, ${randomInt(0, 255)}, ${randomInt(0,255)})`
+// },3000)
 
 
 
