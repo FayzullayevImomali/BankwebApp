@@ -119,9 +119,22 @@ const handleHover = function(e) {
     };
 };
 
+//Passing an argument  into event handler
 navbar.addEventListener('mouseover', handleHover.bind(0.5));
 navbar.addEventListener('mouseout', handleHover.bind(1));
 
+
+//Sticky navigation
+const initialCoords = section1.getBoundingClientRect();
+console.log(initialCoords);
+
+window.addEventListener('scroll', function(){
+    //console.log(window.scrollY);
+    if(window.scrollY > initialCoords.top){ 
+        navbar.classList.add('sticky');
+    }    
+    else navbar.classList.remove('sticky');
+});
 
 //////////////////////////////////
 /////////////////////////////////
