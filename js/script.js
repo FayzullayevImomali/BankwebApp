@@ -84,11 +84,43 @@ const tabsContent = document.querySelectorAll('.operations__content');
 
 tabsContainer.addEventListener('click', function(e){
     e.preventDefault();
-    const clicked = e.target.closest('.operations__tab')
-    
+    const clicked = e.target.closest('.operations__tab');
+
+    //Guard clause
+    if(!clicked) return;
+
+    tabs.forEach(function(tab){
+        tab.classList.remove('operations__tab--active');
+    });
+    clicked.classList.add('operations__tab--active');
+    //Remove all active classes
+    tabsContent.forEach(function(content){
+        content.classList.remove('operations__content--active');
+    })
+    //Activa content area
+    document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active');
+    console.log(clicked.dataset.tab);
 });
 
 
+//Menu fade animations
+const navbar = document.querySelector('.navbar');
+
+const handleHover = function(e) {
+    if(e.target.classList.contains('nav__links')) {
+        const link = e.target;
+        const siblings = link.closest('.navbar').querySelectorAll('.nav__link');
+        const logo = link.closest('.navbar').querySelector('img');
+
+        siblings.forEach(function(el){
+            if(el !== link) el.style.opacity = this;
+        });
+        logo.style.opacity = this;
+    };
+};
+
+navbar.addEventListener('mouseover', handleHover.bind(0.5));
+navbar.addEventListener('mouseout', handleHover.bind(1));
 
 
 //////////////////////////////////
