@@ -40,10 +40,15 @@ body {
 header {
     width: 100%;
     height: 100vh;
-    padding: 1rem 0;
+    /* padding: 1rem 0; */
 }
 
 .navbar{
+    width: 100%;
+    padding: 1rem 0;
+}
+
+.nav {
     display: flex;
     justify-content: space-between;
 }
@@ -636,9 +641,9 @@ button:focus {
     font-weight: 400;
 }
 
-.navbar .sticky {
+.sticky {
     position: fixed;
-    background-color: rgba(255, 255, 255, 0.95)
+    background-color: rgba(255, 255, 255, 0.95);
 }
 
 

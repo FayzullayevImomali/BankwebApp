@@ -125,8 +125,8 @@ navbar.addEventListener('mouseout', handleHover.bind(1));
 
 
 //Sticky navigation
+const navbarContainer = document.querySelector('.container');
 const initialCoords = section1.getBoundingClientRect();
-console.log(initialCoords);
 
 window.addEventListener('scroll', function(){
     //console.log(window.scrollY);
@@ -135,6 +135,20 @@ window.addEventListener('scroll', function(){
     }    
     else navbar.classList.remove('sticky');
 });
+
+const obsCallback = function(entries, observer) {
+    entries.forEach(entry=> {
+        console.log(entry)
+    });
+};
+
+const obsOptions = {
+    root: null,
+    threshold: 0.2,
+}
+
+const observer = new IntersectionObserver(obsCallback, obsOptions);
+observer.observe(section1);
 
 //////////////////////////////////
 /////////////////////////////////
