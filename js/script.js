@@ -5,6 +5,8 @@ const btnOpenModal = document.querySelectorAll('.btn--show-modal');
 
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
+const navLinks = document.querySelectorAll('.nav__links');
+
 
 
 //                   Modal window             //     
@@ -26,12 +28,12 @@ overlay.addEventListener('click', closeModal);
 
 document.addEventListener('keydown', function(e){
     if(e.key === 'Escape' && !modal.classList.contains('hidden')) {
-    closeModal();
+        closeModal();
     }
 });
 
+// Button scrolling
 
-//                         Scroll 
 btnScrollTo.addEventListener('click', function(e) {
     const s1coords = section1.getBoundingClientRect();
     console.log(s1coords);
@@ -59,16 +61,31 @@ btnScrollTo.addEventListener('click', function(e) {
 });
 
 
-//                                Page navigation
+//Event Deligation
+//1. Add event listener to common parent element
+//2. Determine what element originated the event
+document.querySelector('.navbar__list').addEventListener('click', function(e){
+    console.log(e.target);
 
-const navLinks = document.querySelectorAll('.nav__links');
-navLinks.forEach(function(el){
-    el.addEventListener('click', function(e){
+    // Matching strategy
+    if(e.target.classList.contains('nav__links')) {
         e.preventDefault();
-        const id = this.getAttribute('href');
+        const id = e.target.getAttribute('href');
         document.querySelector(id).scrollIntoView({behavior: 'smooth'});
-        
-    })
+    };
+});
+
+
+// Tabbed component 
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener('click', function(e){
+    e.preventDefault();
+    const clicked = e.target.closest('.operations__tab')
+    
 });
 
 
@@ -92,13 +109,13 @@ navLinks.forEach(function(el){
 
 //.insertAdjacentHTML;
 
-const header = document.querySelector('.header');
-const message = document.createElement('div');
-message.classList.add('cookie-message');
-// message.textContent = `We use cookies for improved functionality and analytics`;
+// const header = document.querySelector('.header');
+// const message = document.createElement('div');
+// message.classList.add('cookie-message');
+// // message.textContent = `We use cookies for improved functionality and analytics`;
 
-message.innerHTML =  `We use cookies for improved functionality and analytics.
-<button class="btn btn--close-cookie">Got it!</button>`;
+// message.innerHTML =  `We use cookies for improved functionality and analytics.
+// <button class="btn btn--close-cookie">Got it!</button>`;
 
 //header.prepend(message);
 // header.append(message);
@@ -177,19 +194,24 @@ const logo = document.querySelector('.bank__logo');
 
 
 
-const h1 = document.querySelector('h1');
+
+
+// const alertH1 = function() {
+//     alert(`Great !`)
+// }
+// h1.addEventListener('mouseenter', function(e) {
+//     alert('You are reading the heading :D');
+// });
+
+
 // h1.addEventListener('mouseenter', function(e){
 //     //alert(`Great!: You are reading the heading`);
 // });
 
-const alertH1 = function() {
-    alert('mouseenter: Great! you are reading the header');
-    //h1.removeEventListener('mouseenter', alertH1);
-}
 
-h1.addEventListener('mouseenter', alertH1);
+// h1.addEventListener('mouseenter', alertH1);
 
-setTimeout(()=> h1.removeEventListener('mouseenter', alertH1), 3000);
+// setTimeout(()=> h1.removeEventListener('mouseenter', alertH1), 3000);
 
 // h1.onmouseenter = function() {
 //     alert(`onmouseenter: Great!: You are reading the heading`)
@@ -199,10 +221,7 @@ setTimeout(()=> h1.removeEventListener('mouseenter', alertH1), 3000);
 //                               Bubble and Capturing events
 
 // rgb(255,255,255)
-// const randomInt = function (min, max) {
-//     return Math.floor(Math.random() * (max - min + 1) + min);
-// }    
-
+// const randomInt = (min, max)=> Math.floor(Math.random() * (max - min + 1) + min);
 // const randomColor = ()=> `rgb(${randomInt(0,255)}, ${randomInt(0, 255)}, ${randomInt(0,255)})`;
 
 // console.log(randomColor(0,255));
@@ -224,6 +243,46 @@ setTimeout(()=> h1.removeEventListener('mouseenter', alertH1), 3000);
 //     this.style.backgroundColor = randomColor();
 //     console.log(`LINK`, e.target);
 // });
+
+// const btnOpen = document.querySelector('.nav__links--btn');
+
+// setInterval(function(){
+//     btnOpen.style.backgroundColor = `rgb(${randomInt(0,255)}, ${randomInt(0, 255)}, ${randomInt(0,255)})`
+// },3000)
+
+//                              193.DOM TRAVERSING                     //
+
+const header1 = document.querySelector('h1');
+
+// Going downwards: child
+
+// console.log(header1.querySelectorAll('.highlight'));
+// console.log(header1.childNodes);
+// console.log(header1.children);
+// header1.lastElementChild.style.color = 'red';
+// header1.firstElementChild.style.color = 'orange';
+
+
+// //  Going upwards: parents
+// console.log(header1.parentNode);
+// console.log(header1.parentElement);
+
+// //header1.closest('.header__title').style.background = 'var(--gradient-secondary)';
+
+// //  Going sideways: siblings
+
+// console.log(header1.previousElementSibling);
+// console.log(header1.nextElementSibling);
+
+// console.log(header1.previousSibling);
+// console.log(header1.nextSibling);
+
+// console.log(header1.parentElement.children);
+// [...header1.parentElement.children].forEach(function(element) {
+//     //if(element !== header1) element.style.transform = 'scale(0.5)';
+// });
+
+
 
 // const btnOpen = document.querySelector('.nav__links--btn');
 
