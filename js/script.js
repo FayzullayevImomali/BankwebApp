@@ -144,11 +144,18 @@ const obsCallback = function(entries, observer) {
 
 const obsOptions = {
     root: null,
-    threshold: 0.2,
+    threshold: 0.1,
 }
 
 const observer = new IntersectionObserver(obsCallback, obsOptions);
 observer.observe(section1);
+console.log(observer);
+
+const observer2 = new IntersectionObserver(function(entries) {
+    console.log(entries);
+});
+
+
 
 //////////////////////////////////
 /////////////////////////////////
