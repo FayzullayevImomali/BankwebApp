@@ -522,16 +522,22 @@ button:focus {
     color: #fff;
 }
 
-.footer__nav {
-    padding: 10rem 3rem;
+footer {
     background-color: #37383d;
+    text-align: center;
+    padding: 10rem 3rem;
+}
+
+.footer__nav {
+    padding: 0;
+    background-color: #37383d;
+    margin-bottom: 5rem;
 }
 
 .footer__nav {
     list-style: none;
     display: flex;
     justify-content: center;
-    margin-bottom: 5rem;
 }
 
 .footer__item {
@@ -542,6 +548,11 @@ button:focus {
     font-size: 1.6rem;
     color: #eee;
     text-decoration: none;
+    letter-spacing: 0.063rem;
+}
+
+.footer__link:hover {
+    color: violet;
 }
 
 .footer__logo {
@@ -644,6 +655,11 @@ button:focus {
 .sticky {
     position: fixed;
     background-color: rgba(255, 255, 255, 0.95);
+}
+
+.section--hidden {
+    opacity: 0;
+    transform:translateY(8rem);
 }
 
 
