@@ -172,6 +172,7 @@ button:focus {
 .section {
     padding: 15rem 3rem;
     border-top: 1px solid #ddd;
+    transition: all 0.7s;
 }
 
 .section--hidden  {
@@ -225,6 +226,7 @@ button:focus {
 
 .features__img {
     width: 100%;
+    transition: all 0.5s;
 }
 
 .features__feature {
@@ -254,6 +256,10 @@ button:focus {
 .features__header {
     font-size: 2rem;
     margin-bottom: 1rem;
+}
+
+.lazy-img {
+    filter: blur(5px);
 }
 
 .operations {
