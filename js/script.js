@@ -179,7 +179,7 @@ allSections.forEach(function(section){
 
 // Lazy loading images
 const imgTarget = document.querySelectorAll('[data-src]');
-console.log(imgTarget);
+
 
 
 const loadImg = function(entries, observer) {
@@ -207,6 +207,13 @@ imgTarget.forEach(function(img) {
 });
 
 
+//Vladini Minin tasks
+
+const isUnique = function(str) {
+    console.log(str.split(''));
+}
+
+isUnique('abcd');
 
 
 
