@@ -196,7 +196,6 @@ const loadImg = function(entries, observer) {
     });
 
     observer.unobserve(entry.target);
-
 }
 
 const imgObserver = new IntersectionObserver(loadImg, {
@@ -206,6 +205,8 @@ const imgObserver = new IntersectionObserver(loadImg, {
 imgTarget.forEach(function(img) {
     imgObserver.observe(img);
 });
+
+
 
 
 
