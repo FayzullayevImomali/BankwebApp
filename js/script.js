@@ -213,7 +213,46 @@ const isUnique = function(str) {
     console.log(str.split(''));
 }
 
-isUnique('abcd');
+// Slider
+
+const sliders = document.querySelectorAll('.slide');
+const btnRight = document.querySelector('.slider__btn--right');
+const btnLeft = document.querySelector('.slider__btn--left');
+
+let currentSlide = 0;
+const maxSlides = sliders.length;
+
+const nextSlide = function() {
+    if(currentSlide === (maxSlides - 1)) {
+        currentSlide = 0;
+    } else {
+        currentSlide++;
+    }
+    sliders.forEach((e, i) => e.style.transform = `translateX(${100 * (i - currentSlide)}%)`);
+    
+}
+
+nextSlide(0);
+
+const prevSlide = function() {
+    if(currentSlide === 0) {
+        currentSlide = maxSlides - 1;
+    } else {
+        currentSlide--;
+    }
+    sliders.forEach((e, i) => e.style.transform = `translateX(${100 * (i - currentSlide)}%)`);
+}
+
+btnRight.addEventListener('click', nextSlide);
+btnLeft.addEventListener('click',prevSlide );
+
+window.addEventListener('keydown', function(e) {
+    if(e.key === "ArrowLeft") prevSlide();
+    e.key === "ArrowRight" && nextSlide();
+});
+
+
+
 
 
 
