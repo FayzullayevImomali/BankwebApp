@@ -286,7 +286,7 @@ dotContainer.addEventListener('click', function(e) {
     if(e.target.classList.contains('dots__dot')) {
         const {slide} = e.target.dataset;
         goToSlide(slide);
-        activateDots();
+        activateDots(slide);
     }
 });
 
