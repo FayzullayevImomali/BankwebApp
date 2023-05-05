@@ -218,9 +218,33 @@ const isUnique = function(str) {
 const sliders = document.querySelectorAll('.slide');
 const btnRight = document.querySelector('.slider__btn--right');
 const btnLeft = document.querySelector('.slider__btn--left');
+const dotContainer = document.querySelector('.dots');
 
 let currentSlide = 0;
 const maxSlides = sliders.length;
+
+const goToSlide = function(slide) {
+    sliders.forEach((e, i) => e.style.transform = `translateX(${100 * (i - slide)}%)`);
+};
+
+const createDots = function() {
+    sliders.forEach(function(_, i) {
+        dotContainer.insertAdjacentHTML(
+            'beforeend',
+            `<button class="dots__dot" data-slide="${i}"></button>`
+        );
+    });
+};
+
+createDots();
+
+const activateDots = function(slide) {
+    document.querySelectorAll('.dots__dot').forEach(function(dot){
+        dot.classList.remove('dots__dot--active');
+        document.querySelector(`.dots__dot[data-slide="${slide}"]`).classList.add('dots__dot--active');
+    });
+};
+activateDots(0);
 
 const nextSlide = function() {
     if(currentSlide === (maxSlides - 1)) {
@@ -228,11 +252,13 @@ const nextSlide = function() {
     } else {
         currentSlide++;
     }
-    sliders.forEach((e, i) => e.style.transform = `translateX(${100 * (i - currentSlide)}%)`);
-    
+    goToSlide(currentSlide);
+    activateDots(currentSlide);
 }
 
 nextSlide(0);
+
+
 
 const prevSlide = function() {
     if(currentSlide === 0) {
@@ -240,7 +266,8 @@ const prevSlide = function() {
     } else {
         currentSlide--;
     }
-    sliders.forEach((e, i) => e.style.transform = `translateX(${100 * (i - currentSlide)}%)`);
+   goToSlide(currentSlide);
+   activateDots(currentSlide);
 }
 
 btnRight.addEventListener('click', nextSlide);
@@ -250,6 +277,35 @@ window.addEventListener('keydown', function(e) {
     if(e.key === "ArrowLeft") prevSlide();
     e.key === "ArrowRight" && nextSlide();
 });
+
+
+//Create dot buttons
+
+
+dotContainer.addEventListener('click', function(e) {
+    if(e.target.classList.contains('dots__dot')) {
+        const {slide} = e.target.dataset;
+        goToSlide(slide);
+        activateDots();
+    }
+});
+
+// Lifecycle DOM Events
+
+document.addEventListener('DOMContentLoaded', function(e) {
+    console.log('HTML   parsed and DOM tree built!', e)
+});
+
+window.addEventListener('load', function(e) {
+    console.log('Page fully loaded', e)
+});
+
+window.addEventListener('beforeunload', function(e) {
+    e.preventDefault();
+    console.log(e);
+    e.returnValue = 'message';
+});
+
 
 
 
